@@ -1,0 +1,28 @@
+name: Backup datos y artefacto
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Preparar carpeta backup
+        run: mkdir -p backup
+
+      - name: Comprimir carpeta datos
+        run: |
+          ts="$(date +%Y%m%d-%H%M%S)"
+          tar -czf "backup/datos-${ts}.tar.gz" datos
+
+      - name: Subir artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: backup-datos
+          path: backup/*.tar.gz
+          if-no-files-found: error
