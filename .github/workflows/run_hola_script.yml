@@ -1,0 +1,21 @@
+name: script hola
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  runs-script:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: checkout del código
+      uses: actions/checkout@v5
+      
+    - name: Permisos
+      uses: chmod +x src/hola.sh
+      
+    -name: ejecucion script
+     uses: ./src/hola.sh
+     
