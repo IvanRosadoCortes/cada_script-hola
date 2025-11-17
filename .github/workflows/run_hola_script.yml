@@ -16,6 +16,6 @@ jobs:
     - name: Permisos
       uses: chmod +x src/hola.sh
       
-    -name: ejecucion script
-     uses: ./src/hola.sh
+    - name: ejecucion script
+      uses: ./src/hola.sh
      
